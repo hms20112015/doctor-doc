@@ -6,8 +6,9 @@ authors = ["Hannah Smith <hasmith@redhat.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python =">=3.8,<3.9.7 || >3.9.7"
 requests = "^2.31.0"
+streamlit = "^1.31.1"
 
 
 [build-system]
