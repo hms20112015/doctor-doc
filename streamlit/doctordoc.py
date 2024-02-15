@@ -7,6 +7,7 @@ import streamlit as st
 model = 'llama2' 
 
 def doctordoc(prompt, context):
+    response = ''
     r = requests.post('http://localhost:11434/api/generate',
                       json={
                           'model': model,
@@ -20,12 +21,13 @@ def doctordoc(prompt, context):
         body = json.loads(line)
         response_part = body.get('response', '')
         # the response streams one token at a time, print that as we receive it
-        st.write(response_part)
-
+        response += response_part
+        
         if 'error' in body:
-            raise Exception(body['error'])
-
+            raise Exception(body['error']) 
+        
         if body.get('done', False):
+            st.write(response)
             return body['context']
 
 def main():
@@ -35,8 +37,11 @@ def main():
 
     st.text_input("Please enter an undocumented function:", key="name")
 
-    if st.button("Click here to reveal your documented function:"):
-        context = doctordoc(st.session_state.name, context)
+    try:
+        if st.button("Click here to reveal your documented function:"):
+            context = doctordoc(st.session_state.name, context)
+    except:
+        st.error("Please enter a valid input.")
 
 if __name__ == "__main__":
     main()
