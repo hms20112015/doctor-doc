@@ -31,6 +31,7 @@ def doctordoc(prompt, context):
             return body['context']
 
 def main():
+    st.image("img/img.png")
 
     context = [] # the context stores a conversation history, you can use this to make the model more context aware
 
