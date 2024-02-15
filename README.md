@@ -18,5 +18,5 @@ This repo uses llama2 to generate documented functions based on user input.
 3. Run the example:
 
    ```bash
-   python doctordoc.py
+   streamlit run doctordoc.py
    ```

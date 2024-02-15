@@ -1,5 +1,6 @@
 import json
 import requests
+import streamlit as st
 
 # NOTE: ollama must be running for this to work, start the ollama app or run `ollama serve`
 
@@ -19,7 +20,7 @@ def doctordoc(prompt, context):
         body = json.loads(line)
         response_part = body.get('response', '')
         # the response streams one token at a time, print that as we receive it
-        print(response_part, end='', flush=True)
+        st.write(response_part)
 
         if 'error' in body:
             raise Exception(body['error'])
@@ -29,13 +30,13 @@ def doctordoc(prompt, context):
 
 def main():
     context = [] # the context stores a conversation history, you can use this to make the model more context aware
-    while True:
-        user_input = input("Enter a prompt: ")
-        if not user_input:
-            exit()
-        print()
-        context = doctordoc(user_input, context)
-        print()
+
+    st.title('Doctor Doc')
+
+    st.text_input("Please enter an undocumented function:", key="name")
+
+    if st.button("Click here to reveal your documented function:"):
+        context = doctordoc(st.session_state.name, context)
 
 if __name__ == "__main__":
     main()
