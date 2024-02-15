@@ -9,10 +9,16 @@ This repo uses llama2 to generate documented functions based on user input.
    ollama pull llama2
    ```
 
-2. Install the Python Requirements.
+2. Install the Python dependencies.
 
    ```bash
-   pip install -r requirements.txt
+   pip install poetry
+   ```
+   ```bash
+   poetry shell
+   ```
+   ```bash
+   poetry install
    ```
 
 3. Run the example:

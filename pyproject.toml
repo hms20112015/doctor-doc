@@ -2,7 +2,10 @@
 name = "doctor-doc"
 version = "0.1.0"
 description = ""
-authors = ["Hannah Smith <hasmith@redhat.com>"]
+authors = [
+    "Hannah Smith <hasmith@redhat.com>",
+    "Grace Chin <gchin@redhat.com>",
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
