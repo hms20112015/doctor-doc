@@ -27,21 +27,29 @@ def doctordoc(prompt, context):
             raise Exception(body['error']) 
         
         if body.get('done', False):
-            st.write(response)
+            st.code(response, language='c')
             return body['context']
 
 def main():
+
     context = [] # the context stores a conversation history, you can use this to make the model more context aware
 
     st.title('Doctor Doc')
 
-    st.text_input("Please enter an undocumented function:", key="name")
+    txt = st.text_area(label="Please enter an undocumented function:", height=400, placeholder="Type here...",key="name")
+    st.write(f'You wrote {len(txt)} characters.')
 
     try:
         if st.button("Click here to reveal your documented function:"):
             context = doctordoc(st.session_state.name, context)
     except:
         st.error("Please enter a valid input.")
+
+    #Todo: File upload feature
+    #data = st.file_uploader("Upload a C file")
+
+    #Todo: Download C file feature
+    #st.download_button("Download file",file)
 
 if __name__ == "__main__":
     main()
