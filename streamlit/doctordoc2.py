@@ -3,7 +3,7 @@
 import json
 import requests
 import streamlit as st
-from doctordoc.prompt_engineering import generate_prompt
+from doctordoc.prompt_engineering import generate_prompt as gp
 model = 'llama2' 
 
 def doctordoc(prompt, context):
@@ -41,7 +41,7 @@ def main():
 
     try:
         if st.button("Click here to reveal your documented function:"):
-            prompt = generate_prompt(st.session_state.name)  # Generate prompt using user input
+            prompt = gp.generate_prompt(st.session_state.name)  # Generate prompt using user input
             context = doctordoc(prompt, context)  # Call doctordoc with the generated prompt
     except:
         st.error("Please enter a valid input.")
