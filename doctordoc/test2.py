@@ -1,0 +1,2 @@
+from config import documentation_examples
+print(documentation_examples)
